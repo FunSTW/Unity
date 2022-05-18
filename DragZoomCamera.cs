@@ -78,10 +78,11 @@ public class DragZoomCamera : MonoBehaviour
         }
     }
 
-    private float InvPower4(float value)
+    private float InvPower4(float value01)
     {
-        value = 1 - value;
-        value = value * value * value * value;
-        return 1 - value;
+        float value10 = 1 - value01;
+        value10 = value10 * value10 * value10 * value10;
+        value01 = 1 - value10;
+        return value01;
     }
 }
