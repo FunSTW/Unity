@@ -1,4 +1,4 @@
-// By FunSTW, 2021, https://github.com/FunSTW/Unity-CSharp/
+// By FunSTW, 2022, https://github.com/FunSTW/Unity-CSharp/
 using UnityEngine;
 
 public class DragZoomCamera : MonoBehaviour
