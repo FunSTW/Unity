@@ -1,3 +1,4 @@
+// By FunSTW, 2022, https://github.com/FunSTW/Unity/
 Shader "FunS/XR/Billboard"
 {
 	Properties
