@@ -16,7 +16,7 @@ Shader "FunS/XR/Billboard"
 		[Enum(UnityEngine.Rendering.BlendMode)] _DstBlend("DstBlend", Float) = 6
 		[Enum(UnityEngine.Rendering.CompareFunction)]_ZTestMode("ZTestMode", Float) = 4
 
-		[MaterialToggle(_YAXISFIXED_OFF)] _YAXISFIXED_OFF("Ignore Y axis", Float) = 0
+		[MaterialToggle(_YAXISFIXED_OFF)] _YAXISFIXED_OFF("Y Axis fixed", Float) = 0
 	}
 	SubShader
 	{
