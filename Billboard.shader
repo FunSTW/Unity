@@ -16,7 +16,7 @@ Shader "FunS/XR/Billboard"
 		[Enum(UnityEngine.Rendering.BlendMode)] _DstBlend("DstBlend", Float) = 6
 		[Enum(UnityEngine.Rendering.CompareFunction)]_ZTestMode("ZTestMode", Float) = 4
 
-		[MaterialToggle(_YAXISFIXED_OFF)] _YAXISFIXED_OFF("Y Axis fixed", Float) = 0
+		[KeywordEnum(None, Y)] _AXISFIXED("Axis fixed", Float) = 0.0
 	}
 	SubShader
 	{
@@ -32,8 +32,8 @@ Shader "FunS/XR/Billboard"
 			#pragma vertex vert
 			#pragma fragment frag
 
-			#pragma shader_feature_local _YAXISFIXED_OFF
-			
+			#pragma shader_feature _AXISFIXED_NONE _AXISFIXED_Y
+
 			// GPU Instancing
 			#pragma multi_compile_instancing
 			#pragma target 3.0
@@ -81,13 +81,15 @@ Shader "FunS/XR/Billboard"
 				float2 bias = v.positionOS.xy;
 				
 				float3 forward = normalize(_WorldSpaceCameraPos - positionWS.xyz);
-#if _YAXISFIXED_OFF
-				float3 up = float3(0, 1, 0);
-#else
+
+#if _AXISFIXED_NONE
 				float3 up = normalize(UNITY_MATRIX_V[1].xyz);
-#endif
 				float3 right = cross(forward, up);
-				
+#elif _AXISFIXED_Y
+				float3 up = float3(0, 1, 0);
+				float3 right = normalize(cross(forward, up));
+#endif
+
 				positionWS.xyz += right * bias.r * scale.x + up * bias.g  * scale.y;
 
 				o.positionCS = mul(UNITY_MATRIX_VP, positionWS);
